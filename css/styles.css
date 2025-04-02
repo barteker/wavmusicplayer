@@ -1,0 +1,301 @@
+/* Font Face Declarations */
+@font-face {
+    font-family: 'Clash Grotesk';
+    src: url('../assets/fonts/ClashGrotesk/ClashGrotesk-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Clash Grotesk';
+    src: url('../assets/fonts/ClashGrotesk/ClashGrotesk-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Clash Grotesk';
+    src: url('../assets/fonts/ClashGrotesk/ClashGrotesk-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --oscilloscope-green: #00FF00;
+    --dark-bg: #0a0a0a;
+    --darker-bg: #050505;
+    --card-bg: #111111;
+}
+
+body {
+    font-family: 'Clash Grotesk', Arial, sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    font-weight: 400;
+    background-color: var(--dark-bg);
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--darker-bg);
+    color: white;
+    padding: 20vh 1rem;
+    text-align: center;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                rgba(0, 255, 0, 0.05) 0%,
+                rgba(0, 255, 0, 0.02) 20%,
+                transparent 60%);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.logo-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: var(--darker-bg);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    width: 400px;
+    height: auto;
+    position: relative;
+    z-index: 1;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.logo-container:hover .logo {
+    filter: url('#ripple');
+}
+
+.logo-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                rgba(0, 255, 0, 0.3) 0%,
+                rgba(0, 255, 0, 0) 50%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.subtitle {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    opacity: 0.8;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+section {
+    margin-bottom: 4rem;
+}
+
+h2 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+    color: var(--oscilloscope-green);
+    margin-bottom: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+/* Hero Section */
+.hero {
+    margin: -2rem -1rem 4rem;
+    background-color: var(--darker-bg);
+    padding: 2rem 0;
+    border-radius: 8px;
+}
+
+.video-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    aspect-ratio: 16/9;
+    background-color: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 8px;
+}
+
+/* Project Overview */
+.project-overview {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.project-overview p {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+/* Features Section */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.feature-card:hover {
+    border-color: rgba(0, 255, 0, 0.3);
+}
+
+.feature-card h3 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--oscilloscope-green);
+    letter-spacing: -0.01em;
+}
+
+.feature-card ul {
+    list-style: none;
+}
+
+.feature-card li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #ccc;
+}
+
+.feature-card li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--oscilloscope-green);
+}
+
+/* Development Timeline */
+.development-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.timeline-item {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.timeline-item:hover {
+    border-color: rgba(0, 255, 0, 0.3);
+}
+
+.timeline-item h3 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--oscilloscope-green);
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+}
+
+/* Gallery Section */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item {
+    aspect-ratio: 4/3;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.gallery-item:hover {
+    border-color: rgba(0, 255, 0, 0.3);
+}
+
+/* Footer */
+footer {
+    background-color: var(--darker-bg);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logo-container {
+        max-width: 400px;
+        padding: 1.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    section {
+        margin-bottom: 3rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+} 
