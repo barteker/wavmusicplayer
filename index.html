@@ -19,6 +19,15 @@
                 <feDisplacementMap in="SourceGraphic" in2="greenBlur" scale="3" xChannelSelector="R" yChannelSelector="G" result="displacement"/>
                 <feComposite in="displacement" in2="SourceGraphic" operator="in" result="composite"/>
             </filter>
+            
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="0.5" result="blur"/>
+                <feColorMatrix in="blur" type="matrix" values="
+                    0 0 0 0 0
+                    0 1 0 0 0
+                    0 0 0 0 0
+                    0 0 0 1 0" result="greenBlur"/>
+            </filter>
         </defs>
     </svg>
 
@@ -41,7 +50,20 @@
 
         <section class="project-overview">
             <h2>Project Overview</h2>
-            <p>W/AV is a physical music player device that bridges the gap between digital streaming and tactile music control. Built on a Raspberry Pi, it provides an intuitive, hands-on interface for controlling your Spotify library through physical controls.</p>
+            <p>W/AV is a physical music player that bridges the gap between digital and analog music experiences. It allows users to control their Spotify playback through a tangible interface, bringing back the tactile joy of physical music controls while maintaining the convenience of streaming services.</p>
+        </section>
+
+        <!-- Parallax Background Section -->
+        <section class="parallax-section">
+            <div class="parallax-container">
+                <div class="parallax-layer layer-1"></div>
+                <div class="parallax-layer layer-2"></div>
+                <div class="parallax-layer layer-3"></div>
+            </div>
+            <div class="parallax-content">
+                <h2>Experience Music Differently</h2>
+                <p>Control your music with physical knobs, sliders, and buttons</p>
+            </div>
         </section>
 
         <section class="features">
@@ -98,13 +120,28 @@
         <section class="gallery">
             <h2>Project Gallery</h2>
             <div class="gallery-grid">
-                <!-- Placeholder for project images -->
-                <div class="gallery-item">Image 1</div>
-                <div class="gallery-item">Image 2</div>
-                <div class="gallery-item">Image 3</div>
+                <div class="gallery-item" data-image="assets/images/applepie.jpg">
+                    <img src="assets/images/applepie.jpg" alt="Project Image 1">
+                </div>
+                <div class="gallery-item" data-image="assets/images/applepie.jpg">
+                    <img src="assets/images/applepie.jpg" alt="Project Image 2">
+                </div>
+                <div class="gallery-item" data-image="assets/images/applepie.jpg">
+                    <img src="assets/images/applepie.jpg" alt="Project Image 3">
+                </div>
             </div>
         </section>
     </main>
+
+    <!-- Carousel Modal -->
+    <div class="carousel-modal" id="carouselModal">
+        <button class="carousel-close">&times;</button>
+        <button class="carousel-prev">&lt;</button>
+        <button class="carousel-next">&gt;</button>
+        <div class="carousel-container">
+            <img src="" alt="" id="carouselImage">
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2024 W/AV Project. All rights reserved.</p>
