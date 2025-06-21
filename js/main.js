@@ -115,6 +115,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Also check after a short delay to ensure everything is rendered
     setTimeout(checkWhyCardAnimations, 100);
 
+    // Typewriter effect for feature titles
+    function initTypewriterEffect() {
+        const featureTitles = document.querySelectorAll('.feature-text h3, .and-more-text');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && !entry.target.classList.contains('typewriter')) {
+                    // Add a small delay for staggered effect
+                    setTimeout(() => {
+                        entry.target.classList.add('typewriter');
+                    }, 200);
+                }
+            });
+        }, {
+            threshold: 0.3, // Trigger when 30% of the element is visible
+            rootMargin: '0px 0px -50px 0px' // Trigger slightly before element is fully in view
+        });
+        
+        featureTitles.forEach((title) => {
+            observer.observe(title);
+        });
+    }
+    
+    // Initialize typewriter effect
+    initTypewriterEffect();
+
     // Carousel functionality
     const modal = document.getElementById('carouselModal');
     const modalImage = document.getElementById('carouselImage');

@@ -769,4 +769,208 @@ footer {
         height: 2.5rem;
         font-size: 1.25rem;
     }
+}
+
+/* Features Detailed Section */
+.features-detailed {
+    margin-bottom: 0 !important;
+}
+
+.features-detailed::after {
+    display: none;
+}
+
+.features-detailed h2 {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 2.5rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: -10rem;
+    gap: 4rem;
+    min-height: 600px;
+}
+
+.feature-video {
+    flex: 1;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: var(--card-bg);
+    aspect-ratio: 16 / 9;
+}
+
+.feature-video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.feature-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.2);
+    pointer-events: none;
+}
+
+.feature-text {
+    flex: 1;
+    padding: 2rem 0;
+}
+
+.feature-text h3 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2.5rem;
+    color: #e0e0e0;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.feature-text h3.typewriter {
+    opacity: 1;
+    transform: translateY(0);
+    animation: typewriter 1.2s steps(40, end);
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.feature-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    color: #e0e0e0;
+}
+
+.feature-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive Design for Features */
+@media (max-width: 768px) {
+    .feature-item {
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+    
+    .feature-video {
+        width: 100%;
+        min-height: 250px;
+    }
+    
+    .feature-text {
+        padding: 1rem 0;
+    }
+    
+    .feature-text h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .feature-text p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .features-detailed h2 {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+}
+
+/* And More Text */
+.and-more-container {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2rem 0;
+}
+
+.and-more-text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2.5rem;
+    color: #e0e0e0;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    display: inline-block;
+}
+
+.and-more-text.typewriter {
+    opacity: 1;
+    transform: translateY(0);
+    animation: typewriter 1.2s steps(40, end);
+}
+
+/* CTA Button */
+.cta-container {
+    margin-top: 3rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--heading-green) 0%, #7dd87d 100%);
+    color: var(--dark-bg);
+    text-decoration: none;
+    padding: 1.5rem 3rem;
+    border-radius: 8px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(155, 242, 126, 0.3);
+    border: 2px solid transparent;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(155, 242, 126, 0.4);
+    background: linear-gradient(135deg, #8ff28f 0%, #6cc66c 100%);
+}
+
+.cta-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(155, 242, 126, 0.3);
+}
+
+/* Form Embed */
+.form-embed-container {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(155, 242, 126, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.form-embed-container iframe {
+    border-radius: 8px;
+    background: transparent;
 } 
