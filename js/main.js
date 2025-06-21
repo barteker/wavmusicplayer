@@ -81,25 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        // What section video parallax
-        if (whatVideo && whatSection) {
-            const sectionTop = whatSection.offsetTop;
-            const sectionHeight = whatSection.offsetHeight;
-            
-            // Only apply parallax when the section is in view
-            if (scrollPosition > sectionTop - window.innerHeight && 
-                scrollPosition < sectionTop + sectionHeight) {
-                
-                // Calculate how far through the section we've scrolled (0 to 1)
-                const scrollPercent = (scrollPosition - sectionTop) / sectionHeight;
-                
-                // Create parallax effect that moves video to top left
-                const translateX = scrollPercent * -20; // Move left
-                const translateY = scrollPercent * -30; // Move up
-                const scale = 1.1 + (scrollPercent * 0.1); // Slightly scale up
-                
-                whatVideo.style.transform = `translate(${translateX}%, ${translateY}%) scale(${scale})`;
-            }
+        // What section video - set to final position (no parallax)
+        if (whatVideo) {
+            // Set video to final position: translateX: 0%, translateY: -30%, scale: 1.2
+            whatVideo.style.transform = 'translate(0%, -30%) scale(1.2)';
         }
     });
     
