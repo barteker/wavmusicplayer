@@ -3,70 +3,132 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('header');
     const logo = document.querySelector('.logo');
     
-    // Track mouse movement for glow effect
-    header.addEventListener('mousemove', (e) => {
-        const rect = header.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
+    // Track mouse movement for glow effect across entire page
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
         
-        header.style.setProperty('--mouse-x', `${x}%`);
-        header.style.setProperty('--mouse-y', `${y}%`);
-        
-        // Update the glow filter
-        const glowFilter = document.querySelector('#glow');
-        const colorMatrix = glowFilter.querySelector('feColorMatrix');
-        const blur = glowFilter.querySelector('feGaussianBlur');
-        
-        // Calculate distance from center
-        const distance = Math.sqrt(
-            Math.pow(x - 50, 2) + Math.pow(y - 50, 2)
-        );
-        
-        // Adjust glow intensity based on mouse distance from center
-        const intensity = Math.max(0, 1 - (distance / 15)); // Even smaller radius
-        colorMatrix.setAttribute('values', `
-            0 0 0 0 0
-            0 ${1 + intensity * 2} 0 0 0
-            0 0 0 0 0
-            0 0 0 1 0
-        `);
-        blur.setAttribute('stdDeviation', 0.3 + intensity * 1.2);
+        document.documentElement.style.setProperty('--mouse-x', `${x}%`);
+        document.documentElement.style.setProperty('--mouse-y', `${y}%`);
     });
     
     // Add subtle glow to the title on hover
     const title = document.querySelector('h1');
-    title.addEventListener('mouseover', () => {
-        title.style.textShadow = '0 0 20px rgba(0, 255, 157, 0.5)';
-    });
-    
-    title.addEventListener('mouseout', () => {
-        title.style.textShadow = '0 0 10px rgba(0, 255, 157, 0.3)';
-    });
+    if (title) {
+        title.addEventListener('mouseover', () => {
+            title.style.textShadow = '0 0 20px rgba(0, 255, 157, 0.5)';
+        });
+        
+        title.addEventListener('mouseout', () => {
+            title.style.textShadow = '0 0 10px rgba(0, 255, 157, 0.3)';
+        });
+    }
     
     // Parallax scrolling effect
     const parallaxLayers = document.querySelectorAll('.parallax-layer');
     const parallaxSection = document.querySelector('.parallax-section');
     
+    // Why W/AV parallax layers
+    const whyParallaxLayers = document.querySelectorAll('.why-parallax-layer');
+    const whyWavSection = document.querySelector('.why-wav');
+    
+    // What section video parallax
+    const whatVideo = document.querySelector('.what-video');
+    const whatSection = document.querySelector('.what-section');
+    
     window.addEventListener('scroll', () => {
         const scrollPosition = window.scrollY;
-        const sectionTop = parallaxSection.offsetTop;
-        const sectionHeight = parallaxSection.offsetHeight;
         
-        // Only apply parallax when the section is in view
-        if (scrollPosition > sectionTop - window.innerHeight && 
-            scrollPosition < sectionTop + sectionHeight) {
+        // Original parallax section
+        if (parallaxSection) {
+            const sectionTop = parallaxSection.offsetTop;
+            const sectionHeight = parallaxSection.offsetHeight;
             
-            // Calculate how far through the section we've scrolled (0 to 1)
-            const scrollPercent = (scrollPosition - sectionTop) / sectionHeight;
+            // Only apply parallax when the section is in view
+            if (scrollPosition > sectionTop - window.innerHeight && 
+                scrollPosition < sectionTop + sectionHeight) {
+                
+                // Calculate how far through the section we've scrolled (0 to 1)
+                const scrollPercent = (scrollPosition - sectionTop) / sectionHeight;
+                
+                // Apply different scroll speeds to each layer
+                parallaxLayers.forEach((layer, index) => {
+                    const speed = 0.2 * (index + 1); // Different speeds for each layer
+                    const yPos = -(scrollPercent * 100 * speed);
+                    layer.style.transform = `translateY(${yPos}px)`;
+                });
+            }
+        }
+        
+        // Why W/AV parallax section
+        if (whyWavSection) {
+            const sectionTop = whyWavSection.offsetTop;
+            const sectionHeight = whyWavSection.offsetHeight;
             
-            // Apply different scroll speeds to each layer
-            parallaxLayers.forEach((layer, index) => {
-                const speed = 0.2 * (index + 1); // Different speeds for each layer
-                const yPos = -(scrollPercent * 100 * speed);
-                layer.style.transform = `translateY(${yPos}px)`;
-            });
+            // Only apply parallax when the section is in view
+            if (scrollPosition > sectionTop - window.innerHeight && 
+                scrollPosition < sectionTop + sectionHeight) {
+                
+                // Calculate how far through the section we've scrolled (0 to 1)
+                const scrollPercent = (scrollPosition - sectionTop) / sectionHeight;
+                
+                // Apply different scroll speeds to each layer
+                whyParallaxLayers.forEach((layer, index) => {
+                    const speed = 0.15 * (index + 1); // Slightly slower speeds for subtle effect
+                    const yPos = -(scrollPercent * 100 * speed);
+                    layer.style.transform = `translateY(${yPos}px)`;
+                });
+            }
+        }
+        
+        // What section video parallax
+        if (whatVideo && whatSection) {
+            const sectionTop = whatSection.offsetTop;
+            const sectionHeight = whatSection.offsetHeight;
+            
+            // Only apply parallax when the section is in view
+            if (scrollPosition > sectionTop - window.innerHeight && 
+                scrollPosition < sectionTop + sectionHeight) {
+                
+                // Calculate how far through the section we've scrolled (0 to 1)
+                const scrollPercent = (scrollPosition - sectionTop) / sectionHeight;
+                
+                // Create parallax effect that moves video to top left
+                const translateX = scrollPercent * -20; // Move left
+                const translateY = scrollPercent * -30; // Move up
+                const scale = 1.1 + (scrollPercent * 0.1); // Slightly scale up
+                
+                whatVideo.style.transform = `translate(${translateX}%, ${translateY}%) scale(${scale})`;
+            }
         }
     });
+    
+    // Why WAV title animations - separate scroll listener for better performance
+    function checkWhyCardAnimations() {
+        const whyCards = document.querySelectorAll('.why-card');
+        const baseTriggerPoint = window.innerHeight * 0.7; // Base trigger at 20% from top
+        const staggerDelay = 60; // 100px delay between each card
+        
+        whyCards.forEach((card, index) => {
+            const cardRect = card.getBoundingClientRect();
+            const cardCenter = cardRect.top + cardRect.height / 2;
+            const triggerPoint = baseTriggerPoint + (index * staggerDelay); // Add staggered delay
+            
+            // Check if the card's center has passed its individual trigger point
+            if (cardCenter <= triggerPoint && !card.classList.contains('animate')) {
+                card.classList.add('animate');
+            }
+        });
+    }
+    
+    // Check animations on scroll
+    window.addEventListener('scroll', checkWhyCardAnimations);
+    
+    // Check animations on initial load (in case elements are already in view)
+    window.addEventListener('load', checkWhyCardAnimations);
+    
+    // Also check after a short delay to ensure everything is rendered
+    setTimeout(checkWhyCardAnimations, 100);
 
     // Carousel functionality
     const modal = document.getElementById('carouselModal');
