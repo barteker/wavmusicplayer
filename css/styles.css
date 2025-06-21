@@ -412,7 +412,7 @@ h2 {
 
 /* Footer */
 footer {
-    background-color: var(--darker-bg);
+    background-color: var(--dark-bg);
     color: white;
     text-align: center;
     padding: 4rem 2rem;
@@ -660,4 +660,103 @@ footer {
 .form-embed-container iframe {
     border-radius: 8px;
     background: transparent;
+
+}
+
+/* About Me Section */
+.about-me {
+    background-color: var(--dark-bg);
+    padding: 6rem 2rem;
+    margin: 0 -2rem 4rem;
+    overflow: hidden;
+}
+
+.about-me-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    position: relative;
+}
+
+.about-me-image {
+    flex: 1.5;
+    margin-left: -12rem;
+    margin-right: 0rem;
+}
+
+.about-me-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.about-me-text {
+    flex: .75;
+}
+
+.about-me-text h2 {
+    color: var(--heading-green);
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+}
+
+.about-me-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: #e0e0e0;
+}
+
+.contact-email {
+    color: var(--heading-green);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.contact-email:hover {
+    color: #7dd65f;
+    border-bottom-color: var(--heading-green);
+}
+
+/* Responsive design for about me section */
+@media (max-width: 768px) {
+    .about-me {
+        padding: 4rem 1rem;
+        margin: 0 -1rem 3rem;
+    }
+    
+    .about-me-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .about-me-image {
+        flex: 0 0 250px;
+        margin-left: 0;
+    }
+    
+    .about-me-image img {
+        width: 100%;
+        height: 250px;
+    }
+    
+    .about-me-text h2 {
+        font-size: 2rem;
+    }
+    
+    .about-me-text p {
+        font-size: 1rem;
+    }
+    
+    .contact-email {
+        font-size: 1rem;
+    }
 } 
