@@ -46,6 +46,7 @@ body {
 }
 
 body::before {
+    width: 100vw;
     content: '';
     position: fixed;
     top: 0;
@@ -179,12 +180,6 @@ section {
     position: relative;
 }
 
-/* Add spacing for images between sections */
-section::after {
-    content: '';
-    display: block;
-    height: 4rem;
-}
 
 h2 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -308,27 +303,6 @@ h2 {
     margin-bottom: 0;
 }
 
-/* Responsive adjustments for What section */
-@media (max-width: 768px) {
-    .what-content {
-        padding: 2rem 1rem;
-        justify-content: center;
-    }
-    
-    .what-text {
-        max-width: 100%;
-        padding: 2rem;
-    }
-    
-    .what-text h2 {
-        font-size: 2rem;
-    }
-    
-    .what-text p {
-        font-size: 1rem;
-    }
-}
-
 .why-parallax-container {
     position: absolute;
     top: 0;
@@ -408,8 +382,6 @@ h2 {
     transform: translateX(-10px) translateY(0);
 }
 
-
-
 /* Footer */
 footer {
     background-color: var(--dark-bg);
@@ -418,45 +390,6 @@ footer {
     padding: 4rem 2rem;
     margin-top: 8rem;
 }
-
-
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    main {
-        padding: 3rem 1rem;
-    }
-    
-    section {
-        margin-bottom: 6rem;
-    }
-    
-    section::after {
-        height: 3rem;
-    }
-    
-    .hero {
-        margin: -3rem -1rem 6rem;
-        padding: 3rem 0;
-    }
-    
-
-    
-    .logo-container {
-        max-width: 400px;
-        padding: 1.5rem;
-    }
-    
-    .subtitle {
-        font-size: 1.2rem;
-    }
-    
-    h2 {
-        font-size: 1.75rem;
-    }
-}
-
-
 
 /* Features Detailed Section */
 .features-detailed {
@@ -554,39 +487,6 @@ footer {
     margin-bottom: 0;
 }
 
-/* Responsive Design for Features */
-@media (max-width: 768px) {
-    .feature-item {
-        flex-direction: column;
-        gap: 2rem;
-        margin-bottom: 4rem;
-    }
-    
-    .feature-video {
-        width: 100%;
-        min-height: 250px;
-    }
-    
-    .feature-text {
-        padding: 1rem 0;
-    }
-    
-    .feature-text h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-    
-    .feature-text p {
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-    
-    .features-detailed h2 {
-        font-size: 2rem;
-        margin-bottom: 3rem;
-    }
-}
-
 /* And More Text */
 .and-more-container {
     text-align: center;
@@ -660,7 +560,6 @@ footer {
 .form-embed-container iframe {
     border-radius: 8px;
     background: transparent;
-
 }
 
 /* About Me Section */
@@ -725,17 +624,120 @@ footer {
     border-bottom-color: var(--heading-green);
 }
 
-/* Responsive design for about me section */
+/* ===== MOBILE RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
+    /* What Section Responsive Adjustments */
+    .what-content {
+        padding: 2rem 1rem;
+        justify-content: center;
+    }
+    
+    .what-text {
+        max-width: 100%;
+        padding: 2rem;
+    }
+    
+    .what-text h2 {
+        font-size: 2rem;
+    }
+    
+    .what-text p {
+        font-size: 1rem;
+    }
+    
+    /* General Responsive Design */
+    main {
+        padding: 3rem 1rem;
+    }
+    
+    section {
+        margin-bottom: 6rem;
+    }
+    
+    section::after {
+        height: 3rem;
+    }
+    
+    .demo-video {
+
+    }
+
+    .hero {
+        margin: -3rem -1rem 6rem;
+        padding: 3rem 0;
+    }
+    
+    .logo-container {
+        width: 100%;
+        padding: 0;
+        margin-top: 3rem;
+    }
+
+    .logo {
+        width: 80vw;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    .why-content h3 {
+        font-size: 1.5rem;
+
+    }
+
+    .why-card {
+        margin-bottom: 20vh;
+    }
+
+    .what-video {
+        width: 100px;
+    }
+
+    /* Features Responsive Design */
+    .feature-item {
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+    
+    .feature-video {
+        width: 100%;
+        min-height: 250px;
+    }
+    
+    .feature-text {
+        padding: 1rem 0;
+    }
+    
+    .feature-text h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .feature-text p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .features-detailed h2 {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+    
+    /* About Me Section Responsive Design */
     .about-me {
         padding: 4rem 1rem;
-        margin: 0 -1rem 3rem;
+        margin: 0;
     }
     
     .about-me-content {
         flex-direction: column;
         gap: 2rem;
-        text-align: center;
     }
     
     .about-me-image {
@@ -750,10 +752,17 @@ footer {
     
     .about-me-text h2 {
         font-size: 2rem;
+        text-align: center;
     }
     
     .about-me-text p {
         font-size: 1rem;
+        text-align: left;
+    }
+    
+    .about-me-text a {
+        text-align: center;
+        display: block;
     }
     
     .contact-email {
